@@ -2,16 +2,25 @@
 
 Functions for splitting and joining string lists.
 
-    ```elixir
-    Oxford.split "one"                 # => ["one", "two", "three"]
-    Oxford.split "one and two"         # => ["one", "two", "three"]
-    Oxford.split "one, two, and three" # => ["one", "two", "three"]
-    ```
+  1. `Oxford.split/1` splits a String into a list using commas and/or the word
+  "and" as delimiters.
 
     ```elixir
-    Oxford.join ~w[one]                # => "one"
-    Oxford.join ~w[one two]            # => "one and two"
-    Oxford.join ~w[one two three]      # => "one, two, and three"
+    Oxford.split("one")                 # => ["one", "two", "three"]
+    Oxford.split("one and two")         # => ["one", "two", "three"]
+    Oxford.split("one, two, and three") # => ["one", "two", "three"]
+    ```
+
+  2. `Oxford.join/1` joins a list of Strings into a single String. If there are
+  only two elements, the words are joined by the word "and". If there are three
+  or more elements, they are delimited by commas. The penultimate and ultimate
+  elements are delimited by the word "and" and an [Oxford
+  comma](https://en.wikipedia.org/wiki/Serial_comma).
+
+    ```elixir
+    Oxford.join(~W[one])                # => "one"
+    Oxford.join(~W[one two])            # => "one and two"
+    Oxford.join(~W[one two three])      # => "one, two, and three"
     ```
 
 This library genuinely is as useless as it appears. This is just a personal
