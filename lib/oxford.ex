@@ -4,7 +4,8 @@ defmodule Oxford do
   """
 
   @doc """
-  Splits a string into a list. Splits on commas or the conjunction "and".
+  Splits a string into a list. Splits on commas or the conjunction "and". For
+  lists of three or more elements, the Oxford comma is required.
 
   ## Parameters
 
@@ -30,9 +31,10 @@ defmodule Oxford do
   end
 
   @doc """
-  Joins a list of strings into a single string delimited by commas or the
-  conjunction "and". For comma-delimited lists of three or more elements, the
-  Oxford comma is required.
+  Joins a list of strings into a single string. If there are two elements, they
+  will be delimited by the word "and". If there are three elements, they will
+  be delimited by commas, and the penultimate and ultimate element will be
+  separated by the word "and" and an Oxford comma.
 
   ## Parameters
 
