@@ -12,25 +12,27 @@ defmodule Oxford do
 
   ## Examples
 
-      iex> Oxford.split "one"
+      iex> Oxford.split("one")
       ["one"]
 
-      iex> Oxford.split "one and two"
+      iex> Oxford.split("one and two")
       ["one", "two"]
 
-      iex> Oxford.split "one, two, and three"
+      iex> Oxford.split("one, two, and three")
       ["one", "two", "three"]
   """
 
   @spec split(String.t()) :: [String.t()]
 
   def split(sentence) do
-    sentence |> String.split([", ", "and "], trim: true)
+    delimiter = if sentence =~ ",", do: [", ", ", and "], else: " and "
+    sentence |> String.split(delimiter)
   end
 
   @doc """
   Joins a list of strings into a single string delimited by commas or the
-  conjunction "and".
+  conjunction "and". For comma-delimited lists of three or more elements, the
+  Oxford comma is required.
 
   ## Parameters
 
@@ -38,13 +40,13 @@ defmodule Oxford do
 
   ## Examples
 
-      iex> Oxford.join ["one"]
+      iex> Oxford.join(["one"])
       "one"
 
-      iex> Oxford.join ["one", "two"]
+      iex> Oxford.join(["one", "two"])
       "one and two"
 
-      iex> Oxford.join ["one", "two", "three"]
+      iex> Oxford.join(["one", "two", "three"])
       "one, two, and three"
   """
 

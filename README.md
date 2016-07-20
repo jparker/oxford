@@ -3,12 +3,15 @@
 Functions for splitting and joining string lists.
 
   1. `Oxford.split/1` splits a String into a list using commas and/or the word
-  "and" as delimiters.
+  "and" as delimiters. For comma-delimited lists, the [Oxford
+  comma](https://en.wikipedia.org/wiki/Serial_comma) is required.
+  [Because](http://imgur.com/gallery/fycHx).
 
     ```elixir
     Oxford.split("one")                 # => ["one", "two", "three"]
     Oxford.split("one and two")         # => ["one", "two", "three"]
     Oxford.split("one, two, and three") # => ["one", "two", "three"]
+    Oxford.split("one, two and three")  # => ["one", "two and three"]
     ```
 
   2. `Oxford.join/1` joins a list of Strings into a single String. If there are
